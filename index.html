@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kbeeyh</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #a78bfa;
+      --accent-dim: #7c5cbf;
+      --bg: #0d0d0f;
+      --bg2: #111114;
+      --bg3: #1a1a1f;
+      --border: #2a2a2e;
+      --text: #e8e8e8;
+      --muted: #666;
+      --subtle: #444;
+      --tg-blue: #54b3f0;
+      --tg-bg: #1e2a3a;
+      --tg-border: #1e4a6a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 0.5px solid var(--border);
+      background: var(--bg);
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 100px 40px 72px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 64px;
+      font-weight: 700;
+      color: #f0f0f0;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 11px 28px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: inherit;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent-dim); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 0.5px solid var(--accent);
+      padding: 11px 28px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: inherit;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 64px 40px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #f0f0f0;
+      margin-bottom: 36px;
+    }
+
+    /* ── CARDS ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 0.2s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .card:hover { border-color: var(--accent); }
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 7px;
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: var(--subtle);
+      line-height: 1.6;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 0.5px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+
+    /* ── TELEGRAM ── */
+    .tg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tg-card {
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      transition: border-color 0.2s;
+    }
+
+    .tg-card:hover { border-color: var(--tg-blue); }
+
+    .tg-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--tg-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tg-icon svg { width: 24px; height: 24px; }
+
+    .tg-text h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .tg-text p {
+      font-size: 12px;
+      color: var(--subtle);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .btn-tg {
+      background: var(--tg-bg);
+      color: var(--tg-blue);
+      border: 0.5px solid var(--tg-border);
+      padding: 8px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: inherit;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn-tg:hover { background: #1e3a5a; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-bio p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 14px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .skill-pill {
+      font-size: 10px;
+      color: var(--subtle);
+      border: 0.5px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--subtle);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .stat-val {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      font-size: 11px;
+      color: #333;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .footer-right {
+      font-size: 11px;
+      color: #2a2a2e;
+      letter-spacing: 1px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 18px; }
+      .hero { padding: 64px 20px 48px; }
+      .hero h1 { font-size: 40px; }
+      section { padding: 48px 20px; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a class="logo" href="#">kbeeyh</a>
+    <ul class="nav-links">
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#games">games</a></li>
+      <li><a href="#telegram">telegram</a></li>
+      <li><a href="#about">about</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="hero-tag">// portfolio</div>
+    <h1>kbeeyh</h1>
+    <p class="hero-sub">
+      builder · developer · creator.<br>
+      shipping projects, games, and bots out of curiosity and caffeine.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">view projects</a>
+      <a href="#telegram" class="btn-outline">telegram</a>
+    </div>
+  </header>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <div class="section-label">// 01</div>
+    <div class="section-title">projects</div>
+    <div class="grid-2">
+
+      <a class="card" href="#"> <!-- replace href with your project URL -->
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="1" y="2" width="16" height="13" rx="2" stroke="#a78bfa" stroke-width="1.3"/>
+            <path d="M4 7h10M4 10.5h6" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title">project one</div>
+        <div class="card-desc">describe what this project does and why you built it. keep it short and punchy.</div>
+        <span class="card-tag">web</span>
+      </a>
+
+      <a class="card" href="#"> <!-- replace href with your project URL -->
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="7" stroke="#a78bfa" stroke-width="1.3"/>
+            <path d="M9 5.5v4l2.5 2.5" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title">project two</div>
+        <div class="card-desc">another cool thing you built — tools, bots, scripts, anything goes here.</div>
+        <span class="card-tag">automation</span>
+      </a>
+
+      <a class="card" href="#"> <!-- replace href with your project URL -->
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M3 15V7l6-5 6 5v8" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+            <rect x="6.5" y="10" width="5" height="5" rx="0.5" stroke="#a78bfa" stroke-width="1.3"/>
+          </svg>
+        </div>
+        <div class="card-title">project three</div>
+        <div class="card-desc">a third project — replace all these placeholders with your real work.</div>
+        <span class="card-tag">open source</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── GAMES ── -->
+  <section id="games">
+    <div class="section-label">// 02</div>
+    <div class="section-title">games</div>
+    <div class="grid-3">
+
+      <a class="card" href="#"> <!-- replace href with your game URL -->
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="1" y="4" width="16" height="11" rx="2" stroke="#a78bfa" stroke-width="1.3"/>
+            <path d="M5.5 9.5h3M7 8v3M11.5 9.5h.01M13 9.5h.01" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title">game one</div>
+        <div class="card-desc">genre · what it is, what makes it fun</div>
+        <span class="card-tag">playable</span>
+      </a>
+
+      <a class="card" href="#"> <!-- replace href with your game URL -->
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <polygon points="9,2 16,14 2,14" stroke="#a78bfa" stroke-width="1.3" stroke-linejoin="round"/>
+            <path d="M9 8v3M9 12.5v.5" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title">game two</div>
+        <div class="card-desc">genre · short description of the game</div>
+        <span class="card-tag">in dev</span>
+      </a>
+
+      <a class="card" href="#"> <!-- replace href when ready -->
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="7" stroke="#a78bfa" stroke-width="1.3"/>
+            <path d="M6.5 6.5l5 5M11.5 6.5l-5 5" stroke="#a78bfa" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title">game three</div>
+        <div class="card-desc">genre · a concept you're working on</div>
+        <span class="card-tag">concept</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── TELEGRAM ── -->
+  <section id="telegram">
+    <div class="section-label">// 03</div>
+    <div class="section-title">telegram</div>
+    <div class="tg-list">
+
+      <div class="tg-card">
+        <div class="tg-icon">
+          <svg viewBox="0 0 24 24" fill="#54b3f0">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.43l-2.57-1.9-1.24 1.2c-.14.14-.25.25-.51.25l.18-2.6 4.72-4.27c.21-.18-.04-.28-.31-.1L7.3 14.47l-2.52-.79c-.55-.17-.56-.55.11-.81l9.86-3.8c.46-.17.86.11.71.73z"/>
+          </svg>
+        </div>
+        <div class="tg-text">
+          <h3>channel name here</h3>
+          <p>what you post — updates, tools, content, etc. replace with your real description and telegram link below.</p>
+          <a class="btn-tg" href="https://t.me/yourchannel" target="_blank">join channel</a>
+        </div>
+      </div>
+
+      <div class="tg-card">
+        <div class="tg-icon">
+          <svg viewBox="0 0 24 24" fill="#54b3f0">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.68 7.92c-.12.56-.46.7-.93.43l-2.57-1.9-1.24 1.2c-.14.14-.25.25-.51.25l.18-2.6 4.72-4.27c.21-.18-.04-.28-.31-.1L7.3 14.47l-2.52-.79c-.55-.17-.56-.55.11-.81l9.86-3.8c.46-.17.86.11.71.73z"/>
+          </svg>
+        </div>
+        <div class="tg-text">
+          <h3>bot / group name here</h3>
+          <p>another telegram property — bots, support chats, or announcement channels. update the link below.</p>
+          <a class="btn-tg" href="https://t.me/yourbot" target="_blank">open bot</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="section-label">// 04</div>
+    <div class="section-title">about</div>
+    <div class="about-grid">
+
+      <div>
+        <div class="about-bio">
+          <p>hey, i'm kbeeyh — i build things for fun, learning, and occasionally for people who actually use them.</p>
+          <p>i work on web projects, browser games, and telegram tools. most of what i make starts as a random idea at 2am.</p>
+          <p>currently open to collaboration. reach out on telegram.</p>
+        </div>
+        <div class="skills">
+          <!-- add or remove skills as needed -->
+          <span class="skill-pill">javascript</span>
+          <span class="skill-pill">python</span>
+          <span class="skill-pill">html / css</span>
+          <span class="skill-pill">telegram bots</span>
+          <span class="skill-pill">game dev</span>
+        </div>
+      </div>
+
+      <div class="stats">
+        <!-- replace — with your real numbers -->
+        <div>
+          <div class="stat-label">projects shipped</div>
+          <div class="stat-val">—</div>
+        </div>
+        <div>
+          <div class="stat-label">games made</div>
+          <div class="stat-val">—</div>
+        </div>
+        <div>
+          <div class="stat-label">telegram members</div>
+          <div class="stat-val">—</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-left">
+      <div class="pulse"></div>
+      kbeeyh · 2025
+    </div>
+    <div class="footer-right">built with code &amp; curiosity</div>
+  </footer>
+
+</body>
+</html>
